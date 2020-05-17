@@ -1,0 +1,46 @@
+﻿安装
+
+VS
+
+ActivePerl
+http://www.activestate.com/activeperl/downloads
+
+Nasm汇编器 Win32
+http://www.nasm.us/
+添加系统环境变量 Path (可能需要重启)
+
+Openssl 1.0.0
+https://www.openssl.org/source/old/1.0.0/
+
+配置编译
+
+x86：
+Visual Studio 2008 Command Prompt
+E:
+cd E:\Openssl\openssl-1.0.2d\x86
+perl Configure debug-VC-WIN32 --prefix=E:\Openssl\openssl-1.0.2d\x86
+ms\do_nasm
+
+//
+perl Configure debug-VC-WIN32 --prefix=
+perl Configure VC-WIN32 no-asm --prefix=
+ms\do_ms
+
+x64：
+Visual Studio 2008 x64 Win64 Command Prompt
+cd F:\Openssl\openssl-1.0.2c\x64
+perl Configure VC-WIN64A --prefix=F:\Openssl\openssl-1.0.2c\x64
+ms\do_win64a
+
+//
+perl Configure debug-VC-WIN64A --prefix=
+
+nmake -f ms\nt.mak
+nmake -f ms\nt.mak test
+nmake -f ms\nt.mak install
+nmake -f ms\nt.mak clean
+
+nmake -f ms\ntdll.mak
+nmake -f ms\ntdll.mak test
+nmake -f ms\ntdll.mak install
+nmake -f ms\ntdll.mak clean

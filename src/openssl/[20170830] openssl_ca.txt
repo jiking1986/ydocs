@@ -1,0 +1,58 @@
+﻿[RSA] --------------------------------------------------------------------------------------------------------------------------------
+
+mkdir demoCA
+cd demoCA
+mkdir private
+mkdir newcerts
+type nul> index.txt
+echo 01> serial
+cd ..
+
+openssl genrsa -out demoCA\private\ca.key 2048
+openssl req -new -x509 -days 3650 -subj "/C=CN/ST=State or Province Name/L=Locality Name/O=Organization Name/OU=Organizational Unit Name/CN=OPENSSL RSA ROOT CA/emailAddress=Email Address" -key demoCA\private\ca.key -out demoCA\private\ca.crt
+
+openssl genrsa -out demoCA\private\localhost.key 2048
+openssl req -new -subj "/C=CN/ST=State or Province Name/L=Locality Name/O=Organization Name/OU=Organizational Unit Name/CN=localhost/emailAddress=Email Address/challengePassword=A challenge password/unstructuredName=An optional company name" -key demoCA\private\localhost.key -out demoCA\private\localhost.csr
+openssl ca -batch -policy policy_anything -keyfile demoCA\private\ca.key -cert demoCA\private\ca.crt -days 1825 -in demoCA\private\localhost.csr -out demoCA\private\localhost.crt
+
+openssl genrsa -out demoCA\private\client.key 2048
+openssl req -new -subj "/C=CN/ST=State or Province Name/L=Locality Name/O=Organization Name/OU=Organizational Unit Name/CN=client/emailAddress=Email Address/challengePassword=A challenge password/unstructuredName=An optional company name" -key demoCA\private\client.key -out demoCA\private\client.csr
+openssl ca -batch -policy policy_anything -keyfile demoCA\private\ca.key -cert demoCA\private\ca.crt -days 1825 -in demoCA\private\client.csr -out demoCA\private\client.crt
+openssl pkcs12 -export -clcerts -inkey demoCA\private\client.key -in demoCA\private\client.crt -password pass: -out demoCA\private\client.p12
+
+[ECC] --------------------------------------------------------------------------------------------------------------------------------
+
+mkdir demoCA
+cd demoCA
+mkdir private
+mkdir newcerts
+type nul> index.txt
+echo 01> serial
+cd ..
+
+openssl ecparam -name secp256r1 -genkey -out demoCA\private\ca.key
+openssl req -new -x509 -days 3650 -subj "/C=CN/ST=State or Province Name/L=Locality Name/O=Organization Name/OU=Organizational Unit Name/CN=OPENSSL ECC ROOT CA/emailAddress=Email Address" -key demoCA\private\ca.key -out demoCA\private\ca.crt
+
+openssl ecparam -name secp256r1 -genkey -out demoCA\private\localhost.key
+openssl req -new -subj "/C=CN/ST=State or Province Name/L=Locality Name/O=Organization Name/OU=Organizational Unit Name/CN=localhost/emailAddress=Email Address/challengePassword=A challenge password/unstructuredName=An optional company name" -key demoCA\private\localhost.key -out demoCA\private\localhost.csr
+openssl ca -batch -policy policy_anything -keyfile demoCA\private\ca.key -cert demoCA\private\ca.crt -days 1825 -in demoCA\private\localhost.csr -out demoCA\private\localhost.crt
+
+openssl ecparam -name secp256r1 -genkey -out demoCA\private\client.key
+openssl req -new -subj "/C=CN/ST=State or Province Name/L=Locality Name/O=Organization Name/OU=Organizational Unit Name/CN=client/emailAddress=Email Address/challengePassword=A challenge password/unstructuredName=An optional company name" -key demoCA\private\client.key -out demoCA\private\client.csr
+openssl ca -batch -policy policy_anything -keyfile demoCA\private\ca.key -cert demoCA\private\ca.crt -days 1825 -in demoCA\private\client.csr -out demoCA\private\client.crt
+openssl pkcs12 -export -clcerts -inkey demoCA\private\client.key -in demoCA\private\client.crt -password pass: -out demoCA\private\client.p12
+
+secp256r1
+secp256k1
+secp384r1
+
+[s_server & s_client] --------------------------------------------------------------------------------------------------------------------------------
+openssl s_server -accept 1986 -key demoCA\private\localhost.key -cert demoCA\private\localhost.crt
+openssl s_client -connect localhost:1986
+
+[pkcs12 cer key der pem] --------------------------------------------------------------------------------------------------------------------------------
+openssl pkcs12 -in demoCA\private\client.p12 -password pass: -nokeys -out demoCA\private\client_p12.crt
+openssl pkcs12 -in demoCA\private\client.p12 -password pass: -nocerts -nodes -out demoCA\private\client_p12.key
+
+openssl x509 -outform der -in demoCA\private\client.crt -out demoCA\private\client.der
+openssl x509 -inform der -in demoCA\private\client.der -out demoCA\private\client.pem

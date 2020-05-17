@@ -1,0 +1,57 @@
+﻿0.准备
+// cd openssl
+mkdir demoCA
+cd demoCA
+mkdir newcerts
+mkdir private
+type nul > index.txt
+echo 01> serial
+cd ..
+
+[RSA]
+1.CA证书
+::生成CA私钥
+openssl genrsa -des3 -out ca_rsa.key 2048
+：：生成无密码的key
+openssl rsa -in ca_rsa.key -out ca_rsa_bare.key
+::生成CA根证书公钥
+openssl req -new -x509 -days 3650 -key ca_rsa.key -out ca_rsa.crt
+
+2.服务器端（站点）证书
+：：生成证书私钥
+openssl genrsa -des3 -out 127.0.0.1.pem 1024
+::生成无密码的key
+openssl rsa -in 127.0.0.1.pem -out 127.0.0.1.key
+：：生成证书签名请求
+openssl req -new -key 127.0.0.1.pem -out 127.0.0.1.csr
+::CA签发证书
+openssl ca -policy policy_anything -days 1460 -cert ./demoCA/ca_rsa.crt -keyfile ./demoCA/ca_rsa.key -in 127.0.0.1.csr -out 127.0.0.1.crt
+：：（证书追加）
+type demoCA\ca_rsa.crt>>127.0.0.1.crt
+
+3.客户端证书
+::生成私钥
+openssl genrsa -des3 -out client_rsa.pem 2048
+::生成证书请求
+openssl req -new -key client_rsa.pem -out client_rsa.csr
+：：CA签发证书
+openssl ca -policy policy_anything -days 1460 -cert ca_rsa.crt -keyfile ca_rsa.key -in client_rsa.csr -out client_rsa.crt
+::crt->p12
+openssl pkcs12 -export -clcerts -in client_rsa.crt -inkey client_rsa.pem -out client_rsa.p12
+
+[ECC]
+openssl ecparam -name secp384r1 -genkey -out ca_ecc.key
+openssl req -new -x509 -days 3650 -key ca_ecc.key -out ca_ecc.crt
+
+openssl ecparam -name secp384r1 -genkey -out 127.0.0.1.key
+openssl req -new -key 127.0.0.1.key -out 127.0.0.1.csr
+openssl ca -policy policy_anything -days 1460 -cert ./demoCA/ca_ecc.crt -keyfile ./demoCA/ca_ecc.key -in 127.0.0.1.csr -out 127.0.0.1.crt
+
+openssl ecparam -name secp384r1 -genkey -out client_ecc.key
+openssl req -new -key client_ecc.key -out client_ecc.csr
+openssl ca -policy policy_anything -days 1460 -cert ca_ecc.crt -keyfile ca_ecc.key -in client_ecc.csr -out client_ecc.crt
+openssl pkcs12 -export -clcerts -in client_ecc.crt -inkey client_ecc.key -out client_ecc.p12
+
+[s_server & s_client]
+openssl s_server -accept 2009 -key server.pem -cert server.pem
+openssl s_client -connect localhost:2009
