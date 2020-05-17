@@ -1,0 +1,29 @@
+Curl Openssl (Red Hat Enterprise Linux 7 64-bit)
+
+[Openssl]
+git clone https://github.com/openssl/openssl.git
+cd openssl
+git checkout OpenSSL_1_0_2d
+git checkout -b OpenSSL_1_0_2d
+
+./config no-asm shared --prefix=/home/suse/local/openssl/
+./config no-asm shared --prefix=/home/suse/local/openssl_gmssl/
+./config no-asm shared --prefix=/home/suse/local/openssl_sm234/
+
+make
+make install
+
+[Curl]
+git clone https://github.com/curl/curl.git
+cd curl
+git checkout curl-7_50_1
+git checkout -b curl-7_50_1
+
+./buildconf
+./configure --prefix=/home/suse/local/curl/
+./configure --with-ssl=/home/suse/local/openssl_gmssl/ --prefix=/home/suse/local/curl_gmssl/
+./configure --with-ssl=/home/suse/local/openssl_sm234/ --prefix=/home/suse/local/curl_sm234/
+
+make
+make install
+curl https://www.baidu.com/

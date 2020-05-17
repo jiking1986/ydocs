@@ -1,0 +1,16 @@
+buildconf.bat
+
+cd winbuild
+
+"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\vcvars32.bat"
+
+nmake /f Makefile.vc mode=static VC=14 WITH_SSL=static SSL_PATH="E:\github\openssl\VC14-WIN32_debug_no-shared_no-asm\Openssl" GEN_PDB=yes DEBUG=yes MACHINE=x86
+
+nmake /f Makefile.vc mode=static VC=14 WITH_SSL=static SSL_PATH="E:\github\openssl\VC14-WIN32_release_no-shared_no-asm\Openssl" GEN_PDB=no DEBUG=no MACHINE=x86
+
+"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\amd64\vcvars64.bat"
+
+nmake /f Makefile.vc mode=static VC=14 WITH_SSL=static SSL_PATH="E:\github\openssl\VC14-WIN64A_debug_no-shared_no-asm\Openssl" GEN_PDB=yes DEBUG=yes MACHINE=x64
+
+nmake /f Makefile.vc mode=static VC=14 WITH_SSL=static SSL_PATH="E:\github\openssl\VC14-WIN64A_release_no-shared_no-asm\Openssl" GEN_PDB=no DEBUG=no MACHINE=x64
+

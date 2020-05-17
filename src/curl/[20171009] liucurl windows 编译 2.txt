@@ -1,0 +1,13 @@
+x86
+"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\vcvars32.bat"
+cd "C:\work\gmssl\gmssl\curl_openssl_https\curl-7.50.1\winbuild"
+nmake /f Makefile.vc mode=static VC=14 WITH_DEVEL="C:\openssl\102d_release" WITH_SSL=static GEN_PDB=no DEBUG=no MACHINE=x86
+pause
+
+
+
+x64:
+"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\amd64\vcvars64.bat"
+cd "C:\work\gmssl\gmssl\curl_openssl_https\curl-7.50.1\winbuild"
+nmake /f Makefile.vc mode=static VC=14 WITH_DEVEL="C:\openssl\102d_debug_x64" WITH_SSL=static GEN_PDB=yes DEBUG=yes MACHINE=x64
+pause
