@@ -1,0 +1,32 @@
+1、下载JDK
+http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html
+
+http://download.oracle.com/otn/java/jdk/6u45-b06/jdk-6u45-linux-i586-rpm.bin?AuthParam=1509951101_7662d7834a77f2b038f4f9e40f94f9ff
+
+2、安装
+
+3、配置环境变量
+
+JAVA_HOME
+C:\Program Files\Java\jdk1.8.0_141
+
+Path
+%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;
+
+CLASSPATH
+.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;
+
+4、测试
+
+java -version
+
+HelloWorld.java
+
+public class HelloWorld {
+    public static void main(String []args) {
+        System.out.println("Hello World");
+    }
+}
+
+javac HelloWorld.java
+java HelloWorld

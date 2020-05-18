@@ -1,0 +1,7 @@
+Eclipes JVM 内存参数设置
+
+1. Windows -> Preferences -> Java -> Installed JREs
+
+2. Edit
+
+3. -Xms512m -Xmx512m
