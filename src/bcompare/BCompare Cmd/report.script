@@ -1,0 +1,2 @@
+load %1 %2
+folder-report layout:summary options:display-mismatches output-to:"report.html" output-options:html-color

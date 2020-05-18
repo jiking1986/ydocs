@@ -1,0 +1,1 @@
+hex-report layout:side-by-side options:display-mismatches,line-numbers output-to:"report.html" output-options:html-color %1 %2
