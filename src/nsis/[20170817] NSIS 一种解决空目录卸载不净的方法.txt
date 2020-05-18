@@ -1,0 +1,20 @@
+﻿[20170817_4] NSIS 一种解决空目录卸载不净的方法
+
+NSIS多目录安装时容易出现卸载的时候残留一些空目录，我们可以通过一些注册表记录及RMDir这条指令配合解决这个问题。
+
+大体思路：
+在安装过程中，记录$INSTDIR，并写入注册表
+WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "InstallDir" "$INSTDIR"
+这个$INSTDIR就是目录选择时所对应的路径
+
+卸载过程，通过注册表获取“安装时选择的$INSTDIR”
+Var /GLOBAL InstallDir
+定义一个全局变量，并读取安装路径
+ReadRegStr $R0 ${PRODUCT_UNINST_ROOT_KEY} ${PRODUCT_UNINST_KEY} "InstallDir"
+StrCpy $InstallDir $R0
+
+在删除安装的其他文件后，最后做目录删除操作
+RMDir "$InstallDir"
+此处不要添加 "/r" 参数，因为安装路径有可能是系统路径，我们只删除空目录。
+
+以上搞定卸载过程中空目录残留的问题！
