@@ -1,0 +1,8 @@
+﻿[20170817_3] chromium41 跨域、跨（http、https）协议
+
+command_line.cc
+--allow-file-access-from-files
+current_process_commandline_->AppendSwitch("--disable-web-security");
+current_process_commandline_->AppendSwitch("--allow-running-insecure-content");
+
+current_process_commandline_->AppendSwitch("--ignore-certificate-errors"); // 不建议使用，有安全问题

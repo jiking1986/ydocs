@@ -1,0 +1,14 @@
+﻿[20170817] chromium41 组建npapi控件目录列表
+
+src/content/common/plugin_list_win.cc
+
+void PluginList::GetPluginDirectories(
+    std::vector<base::FilePath>* plugin_dirs) {
+
+
+
+控件管控
+void PluginInfoMessageFilter::Context::DecidePluginStatus(
+
+plugin_prefs.cc
+bool PluginPrefs::IsPluginEnabled(const content::WebPluginInfo& plugin) const {

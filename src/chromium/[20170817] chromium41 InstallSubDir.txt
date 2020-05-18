@@ -1,0 +1,4 @@
+InstallSubDir
+
+base::string16 BrowserDistribution::GetInstallSubDir() {
+browser_distribution.cc

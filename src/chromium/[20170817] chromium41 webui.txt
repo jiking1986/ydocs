@@ -1,0 +1,3 @@
+webui
+
+src\chrome\browser\resources\options\browser_options.html

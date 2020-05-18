@@ -1,0 +1,4 @@
+[20170818] chromium49 tab 高度
+
+src\chrome\browser\ui\layout_constants.cc
+const int kTabstripTabOverlap[] = {26, 16, 16};

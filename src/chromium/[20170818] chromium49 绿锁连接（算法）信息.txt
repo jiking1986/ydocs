@@ -1,0 +1,47 @@
+[20170818] chromium49 绿锁连接（算法）信息
+
+src\chrome\browser\ui\website_settings\website_settings.cc
+void WebsiteSettings::Init(
+    const GURL& url,
+    const SecurityStateModel::SecurityInfo& security_info) {
+...
+uint16_t cipher_suite =
+      net::SSLConnectionStatusToCipherSuite(security_info.connection_status);
+  if (security_info.security_bits > 0 && cipher_suite) {
+    int ssl_version =
+        net::SSLConnectionStatusToVersion(security_info.connection_status);
+    const char* ssl_version_str;
+    net::SSLVersionToString(&ssl_version_str, ssl_version);
+
+    if ((security_info.connection_status & 0xff00) == 0xe000)
+        ssl_version_str = "GM 1.1";
+
+    site_connection_details_ += ASCIIToUTF16("\n\n");
+    site_connection_details_ += l10n_util::GetStringFUTF16(
+        IDS_PAGE_INFO_SECURITY_TAB_SSL_VERSION,
+        ASCIIToUTF16(ssl_version_str));
+
+    bool no_renegotiation =
+        (security_info.connection_status &
+         net::SSL_CONNECTION_NO_RENEGOTIATION_EXTENSION) != 0;
+    const char *key_exchange, *cipher, *mac;
+    bool is_aead;
+    net::SSLCipherSuiteToStrings(
+        &key_exchange, &cipher, &mac, &is_aead, cipher_suite);
+
+    if ((security_info.connection_status & 0xffff) == 0xe011)
+        key_exchange = "ECDHE_SM2";
+    if ((security_info.connection_status & 0xffff) == 0xe013)
+        key_exchange = "ECC_SM2";
+
+    site_connection_details_ += ASCIIToUTF16("\n\n");
+    if (is_aead) {
+      site_connection_details_ += l10n_util::GetStringFUTF16(
+          IDS_PAGE_INFO_SECURITY_TAB_ENCRYPTION_DETAILS_AEAD,
+          ASCIIToUTF16(cipher), ASCIIToUTF16(key_exchange));
+    } else {
+      site_connection_details_ += l10n_util::GetStringFUTF16(
+          IDS_PAGE_INFO_SECURITY_TAB_ENCRYPTION_DETAILS,
+          ASCIIToUTF16(cipher), ASCIIToUTF16(mac), ASCIIToUTF16(key_exchange));
+    }
+...

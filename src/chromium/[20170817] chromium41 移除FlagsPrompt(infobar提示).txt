@@ -1,0 +1,5 @@
+﻿[20170817_2] chromium41 移除FlagsPrompt(infobar提示)
+
+bad_flags_prompt.cc
+void ShowBadFlagsPrompt(Browser* browser) {
+  return;

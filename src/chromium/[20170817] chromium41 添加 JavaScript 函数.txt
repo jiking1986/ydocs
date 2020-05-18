@@ -1,0 +1,22 @@
+﻿[20170817_1] chromium41 添加 JavaScript 函数
+
+需要修改４个文件：
+
+DOMWindow.h
+// 新增函数定义
+virtual String NewFunction(const String& param) { return L""; }
+
+LocalDOMWindow.cpp
+// 新增函数实现
+String LocalDOMWindow::NewFunction(const String& param) {
+	if ("InternalVersion" == param)
+		return "InternalVersion";
+	else
+		return "NONE";
+}
+
+LocalDOMWindow.h
+virtual String NewFunction(const String& param) override;
+
+Window.idl
+DOMString ? GetBrowserProperties(DOMString pro);

@@ -1,0 +1,4 @@
+[20170817] chromium41 移除 bookmark bar 简介提示
+
+bookmark_bar_instructions_view.cc
+BookmarkBarInstructionsView::BookmarkBarInstructionsView(

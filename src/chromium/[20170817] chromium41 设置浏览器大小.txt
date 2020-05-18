@@ -1,0 +1,14 @@
+[20170817_6] chromium41 设置浏览器大小
+
+设置浏览器首次打开大小
+window_sizer.cc
+GetDefaultWindowBounds
+
+设置浏览器（拖拽）最小size
+browser_view_layout.cc
+gfx::Size BrowserViewLayout::GetMinimumSize() {
+  ...
+  min_width = 1024;
+  min_height = 768;
+  return gfx::Size(min_width, min_height);
+}

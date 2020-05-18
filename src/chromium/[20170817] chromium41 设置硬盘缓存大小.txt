@@ -1,0 +1,7 @@
+[20170817_4] chromium41 设置硬盘缓存大小
+
+最小化硬盘缓存大小可以让浏览器缓存“不落地”。
+
+command_line.cc
+current_process_commandline_->AppendSwitchASCII("disk-cache-size", "1");
+current_process_commandline_->AppendSwitchASCII("media-cache-size", "1");

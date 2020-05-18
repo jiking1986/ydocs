@@ -1,0 +1,5 @@
+[20170817] chromium41 render_messages
+
+src\chrome\common\render_messages.h
+
+src\chrome\renderer\chrome_content_renderer_client.cc

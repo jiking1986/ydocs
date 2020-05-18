@@ -1,0 +1,13 @@
+[20170817] chromium41 移除 Crashed Bubble 提示
+
+startup_browser_creator_impl.cc
+void StartupBrowserCreatorImpl::AddInfoBarsIfNecessary(
+    Browser* browser,
+    chrome::startup::IsProcessStartup is_process_startup) {
+  if (!browser || !profile_ || browser->tab_strip_model()->count() == 0)
+    return;
+
+  /*if (HasPendingUncleanExit(browser->profile()) &&
+      !browser->window()->ShowSessionCrashedBubble()) {
+    SessionCrashedInfoBarDelegate::Create(browser);
+  }*/

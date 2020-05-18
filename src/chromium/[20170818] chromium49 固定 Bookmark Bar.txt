@@ -1,0 +1,8 @@
+[20170818] chromium49 固定 Bookmark Bar
+
+src\chrome\browser\ui\browser.cc
+void Browser::UpdateBookmarkBarState(BookmarkBarStateChangeReason reason) {
+...
+  state = BookmarkBar::SHOW;
+  bookmark_bar_state_ = state;
+...

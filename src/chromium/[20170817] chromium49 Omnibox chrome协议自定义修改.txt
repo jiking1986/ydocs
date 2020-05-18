@@ -1,0 +1,9 @@
+[20170817] chromium49 Omnibox chrome:// 自定义修改
+
+src\chrome\browser\autocomplete\chrome_autocomplete_scheme_classifier.cc
+metrics::OmniboxInputType::Type
+ChromeAutocompleteSchemeClassifier::GetInputTypeForScheme(
+    const std::string& scheme) const {
+
+chrome_content_browser_client.cc
+bool RemoveUberHost(GURL* url) {

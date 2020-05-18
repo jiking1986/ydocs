@@ -1,0 +1,6 @@
+[20170817] chromium41 flash support
+
+src\third_party\adobe\flash\flapper_version.h
+
+#define FLAPPER_AVAILABLE  
+#define FLAPPER_VERSION_STRING "21.0.0.182" 

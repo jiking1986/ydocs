@@ -1,0 +1,25 @@
+[20170817] chromium41 移除快捷键
+
+render_widget_host_view_aura.cc
+void RenderWidgetHostViewAura::OnKeyEvent(ui::KeyEvent* event) {
+  TRACE_EVENT0("input", "RenderWidgetHostViewAura::OnKeyEvent");
+  if (touch_editing_client_ && touch_editing_client_->HandleInputEvent(event))
+    return;
+
+  if (popup_child_host_view_ && popup_child_host_view_->NeedsInputGrab()) {
+    popup_child_host_view_->OnKeyEvent(event);
+    if (event->handled())
+      return;
+  }
+  if (event->key_code() == ui::VKEY_H)
+  {
+	  //return;
+  }
+  if (event->key_code() == ui::VKEY_F12)
+  {
+	  return;
+  }
+  if (event->key_code() == ui::VKEY_F1)
+  {
+	  return;
+  }
