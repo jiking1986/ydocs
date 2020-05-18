@@ -1,0 +1,25 @@
+[difftool]
+	prompt = false
+[diff]
+	tool = bc4
+[difftool "bc4"]
+	cmd = \"D:\\Program Files\\Beyond Compare 4\\BCompare.exe\" \"$LOCAL\" \"$REMOTE\"
+[mergetool]
+	prompt = false
+[merge]
+	tool = bc4
+[mergetool "bc4"]
+	cmd = \"D:\\Program Files\\Beyond Compare 4\\BCompare.exe\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+[log]
+	date = iso
+[core]
+	autocrlf = true
+	filemode = true
+[user]
+	name = jiking1986
+	email = jiking1986@jd.com
+[credential]
+[i18n]
+	logoutputencoding = utf-8
+[credential]
+	helper = store

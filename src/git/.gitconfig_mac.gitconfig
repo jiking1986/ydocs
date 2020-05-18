@@ -1,0 +1,15 @@
+[user]
+	name = yejiaming1
+	email = yejiaming@jd.com
+[difftool]
+	prompt = false
+[diff]
+	tool = bc
+[difftool "bc"]
+	cmd = \"/usr/local/bin/bcomp\" \"$LOCAL\" \"$REMOTE\"
+[mergetool]
+	prompt = false
+[merge]
+	tool = bc
+[mergetool "bc"]
+	cmd = \"/usr/local/bin/bcomp\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"

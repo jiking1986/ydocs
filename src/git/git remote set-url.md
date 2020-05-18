@@ -1,0 +1,1 @@
+git remote set-url origin https://coding.jd.com/pan-client/JDNetDisk2.0.git
