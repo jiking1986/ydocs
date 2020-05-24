@@ -1,0 +1,6 @@
+https://github.com/openssl/openssl/archive/OpenSSL_1_1_1.tar.gz
+tar -xzvf openssl-OpenSSL_1_1_1.tar.gz
+cd openssl-OpenSSL_1_1_1
+./config no-shared no-asm --prefix=/Users/yejiaming/Downloads/Workspaces/openssl-OpenSSL_1_1_1-release/Openssl --openssldir=/Users/yejiaming/Downloads/Workspaces/openssl-OpenSSL_1_1_1-release/SSL
+make
+make install

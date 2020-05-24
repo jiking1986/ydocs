@@ -1,0 +1,22 @@
+http://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz
+tar -xzvf autoconf-2.69.tar.gz
+cd autoconf-2.69
+./configure --prefix=
+make
+make install
+
+http://ftp.gnu.org/gnu/automake/automake-1.16.tar.gz
+tar -xzvf automake-1.16.tar.gz
+cd automake-1.16
+./configure --prefix=
+make
+make install
+
+export PATH=$PATH:/Users/yejiaming/Workspaces/git.sv.gnu.org/r/autoconf-2.69-release/bin
+
+https://github.com/curl/curl/releases/download/curl-7_64_0/curl-7.64.0.tar.gz
+tar -xzvf curl-7.64.0.tar.gz
+cd curl-7.64.0
+./configure --with-ssl=/Users/yejiaming/Downloads/Workspaces/openssl-OpenSSL_1_1_1-release/Openssl --prefix=/Users/yejiaming/Downloads/Workspaces/curl-7.64.0-release
+make
+make install
