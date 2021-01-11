@@ -1,0 +1,1 @@
+sudo /usr/sbin/installer -pkg Install\ xxx.pkg -target /Applications/

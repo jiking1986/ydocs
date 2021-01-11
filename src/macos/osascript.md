@@ -1,0 +1,1 @@
+osascript -e "do shell script \"security add-trusted-cert -d -r trustRoot -p basic -p ssl -k /Library/Keychains/System.keychain ...ca.crt\" user name \"username...\" password \"......\" with administrator privileges"

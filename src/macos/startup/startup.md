@@ -1,0 +1,9 @@
+~/Library/Preferences/com.apple.loginitems.plist
+~/Library/LaunchAgents
+/Library/LaunchAgents
+/Library/LaunchDaemons
+/Library/StartupItems
+/System/Library/LaunchAgents
+/System/Library/LaunchDaemons
+/System/Library/StartupItems
+./etc/rc.common
