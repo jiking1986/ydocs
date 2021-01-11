@@ -7,8 +7,6 @@ passwd openresty
 ### Net
 Wired Connected
 
-git clone https://coding.jd.com/yejiaming1/limit_gateway.git
-
 ### modules
 git clone https://github.com/cfsego/limit_upload_rate.git
 
