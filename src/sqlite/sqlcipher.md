@@ -68,6 +68,8 @@ LTLIBS = $(LTLIBS) libcrypto.lib libssl.lib advapi32.lib crypt32.lib gdi32.lib s
 
 nmake /f Makefile.msc
 
+---
+
 nmake /f Makefile.msc ^
      SQLITE3LIB=sqlcipher.lib ^
      SQLITE3DLL=sqlcipher.dll ^

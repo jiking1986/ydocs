@@ -1,0 +1,6 @@
+# 删除鼠标右键——在Visual Studio中打开
+
+---
+
+HKEY_CLASSES_ROOT\Directory\Background\shell\AnyCode
+HKEY_CLASSES_ROOT\Directory\shell\AnyCode
